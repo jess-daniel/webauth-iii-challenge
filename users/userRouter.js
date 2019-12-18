@@ -1,8 +1,9 @@
 const router = require("express").Router();
 
 const Users = require("./userModel");
+const restricted = require("../auth/restricted");
 
-router.get("/", (req, res) => {
+router.get("/", restricted, (req, res) => {
   Users.get()
     .then(users => {
       res.status(200).json(users);
